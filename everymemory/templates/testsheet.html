@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}Testsheet{% endblock %}
 {% block content %}
-<button class='print' onclick="print(document.getElementById('print1').innerHTML)" style="text-align: right; margin-right: 2%; margin-top: 10px; margin-bottom: 10px">출력</button>
 <div class="introduction">
     <h3>EveryMemory 사용방법</h3>
     <p class="testsheet"><b>1. <b style="color: #72a73d;"><단어 1></b> 에는 랜덤으로 섞여질 단어 모음, <b style="color: #7f4206;"><단어 2></b>에는 테스트 할 단어모음을 적은 텍스트 파일(.txt)을 넣어주세요. </b>(ex. 영어 단어 테스트에서 한국어를 적는 테스트를 하고 싶다면 단어 1에 영어를, 단어 2에 한국어를 넣어주세요.)</p>
@@ -15,6 +14,7 @@
 </div>
 
 <hr>
+<button class='print' onclick="print(document.getElementById('print1').innerHTML)" style="text-align: right; margin-right: 2%; margin-top: 10px; margin-bottom: 10px">출력</button>
 <div style="text-align: center; margin-top: 1%;">
 <button class="word1" style="width: 30%; text-align: center;" onclick="openTextFile()">단어 1 열기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <button class="word2" style="width: 30%; text-align: center;" onclick="openTextFile1()">단어 2 열기</button>
