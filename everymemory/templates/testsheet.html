@@ -124,7 +124,7 @@
 
         var tag = "<button class='excel' onclick='ReportToExcelConverter()'>excel 다운</button> &nbsp;";
         tag += "<button id='save' class='image' onclick='ReportToImgConverter()'>이미지 다운</button> &nbsp;";
-        tag += "<button class='print' onclick='print(document.getElementById('array').innerHTML)'>출력</button> &nbsp;";
+        tag += "<button class='print' onclick='print(document.getElementById('print').innerHTML)'>출력</button> &nbsp;";
         tag += "<button class='score' onclick='compareInputValue()'>채점하기</button>";
         button_of_4.innerHTML = tag;
         reader1.readAsText(file);
