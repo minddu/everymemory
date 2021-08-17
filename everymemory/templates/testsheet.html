@@ -124,7 +124,7 @@
 
         var tag = "<button class='excel' onclick='ReportToExcelConverter()'>excel 다운</button> &nbsp;";
         tag += "<button id='save' class='image' onclick='ReportToImgConverter()'>이미지 다운</button> &nbsp;";
-        tag += "<button class='print' onclick='print(document.getElementById('print').innerHTML))'>출력</button> &nbsp;";
+        tag += "<button class='print' onclick='print(document.getElementById('array').innerHTML)'>출력</button> &nbsp;";
         tag += "<button class='score' onclick='compareInputValue()'>채점하기</button>";
         button_of_4.innerHTML = tag;
         reader1.readAsText(file);
@@ -161,7 +161,7 @@
             score.innerHTML = '<tr>' + '<td>' + "100점입니다. 축하해요!" + '</td>' + '</tr>';
         }
         else {
-            score.innerHTML = '<tr>' + '<td>' + "단어 " + txtarray1.length +"개 중 " + sum + "개 맞으셨습니다.!" + '</td>' + '</tr>';
+            score.innerHTML = '<tr>' + '<td>' + "단어 " + txtarray1.length +"개 중 " + sum + "개 맞으셨습니다." + '</td>' + '</tr>';
             wrongwordtext.innerHTML = "<p class='wrongwordtext'>틀린 단어, 다시 봐요!</p>";
             for(var b = 0; b < wrongword1.length; b++) {
             if(wrongword1[b] != undefined && wrongword2[b] != undefined) {
