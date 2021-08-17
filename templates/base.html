@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!--다른 템플릿에서 덮어쓰기 할 수 있음 -->
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@400;700;800&family=Cinzel:wght@500&display=swap" rel="stylesheet">   
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+</head>
+<body>
+<div id="top">
+    <h3>
+        <a href="{% url 'main' %}">
+            <img src="{% static 'image/logostyle.png' %}" alt="EveryMemory" width=80px height=50px>
+        </a>
+    </h3>
+    <ul></ul>
+</div>
+<div id="menu_bar">
+    <ul>
+        <li>
+            <a href="{% url 'main' %}">MAIN</a>
+        </li>
+        <li>
+            <a href="{% url 'memory1' %}">WORD TEST</a>
+        </li>
+        <li>
+            <a href="{% url 'study' %}">STUDY</a>
+        </li>
+    </ul>
+</div> 
+
+<div id="main_img_bar">
+    <img src="{% static 'image/mention.png' %}" style="pointer-events : none;">
+</div>
+{% block content %}
+{% endblock %}
+
+<div style="margin-top: 9%; margin-bottom: 9%;"></div>
+
+<div id="footer_content">
+    <span style="margin-left: 180px; "></span>
+    <span>
+        <p style="color: rgb(52, 76, 17)">[WORDTEST] 문의 메일 : kmj8718@gmail.com</p>
+        <p style="color: rgb(52, 76, 17)">[STUDY] 문의 메일 : sys4who@gmail.com</p>
+    </span>
+    <span style="margin-left: 180px;"></span>
+</div>
+</body>
+</html>

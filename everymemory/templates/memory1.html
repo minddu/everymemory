@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Memory{% endblock %}
+{% block content %}
+<div class="introduction">
+    <br>
+    <h1 class="text1"><b>&nbsp&nbsp암기 : (명사) 외워 잊지 아니함</b></h1>
+    <br>
+    <p class="everymemory">&nbsp&nbsp암기할 때 단어장 순서대로 외워진 경험이 있으신가요?</p>
+    <p class="everymemory">&nbsp&nbsp<b style="color: rgb(52, 76, 17);">EveryMemory</b>에서는 당신의 암기력을 향상시키기 위해 랜덤 단어장 기능을 제공해드리고 있습니다. 저희와 함께 단어 외우러 가요!</p>
+    <br>
+</div>
+<div style="margin-top: 2%; text-align: center;">
+    <button style="width: 70%; text-align: center;" onclick="location.href='/everymemory/memory/testsheet/'">단어 외우러 가기</button>
+</div>
+{% endblock %}

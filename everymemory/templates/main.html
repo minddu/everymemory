@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>EveryMemory</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    </head>
+    <body>
+        <div style="margin-top: 2%; margin-bottom: 2%;"></div>
+        <div style="text-align: center;">
+            <h1><img class="logo" src="{% static 'image/logostyle.png' %}" alt="EveryMemory" width="25%" height="25%"></h1>
+        </div>
+        <div style="margin-top: 15px; margin-bottom: 25px;"></div>
+        <div class="introduction">
+            <p class="main1"><b>EVERY Memo, Every MEMORY</b></p>
+            <p class="main">모든 것을 기록하고, 모든 것을 기억하다</p>
+            <br>
+            <br>
+            <p class="main" style="color: black;">모든 것을 기억하고 싶다면 <b style="font-size: 22px; color: rgb(52, 76, 17);">MEMORY</b>를, 같은 공부 목표를 가진 사람들과 함께하고 싶다면 <b style="font-size: 22px; color: rgb(52, 76, 17);">STUDY</b>를 선택해주세요.</p>
+        </div>
+        <div style="margin-top: 6%; margin-bottom: 6%;"></div>
+        <div>
+            <div style="text-align: center; margin-left: auto; margin-right: auto;">
+                <button class="main" style="width: 40%; height:150px; text-align: center; font-size: 35px;" onclick="location.href='/everymemory/memory/'">MEMORY</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="main" style="width: 40%; height:150px; text-align: center; font-size: 35px;">STUDY</button>
+            </div>
+        </div>
+    </body>
+</html>

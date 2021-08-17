@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% block title %}Testsheet{% endblock %}
+{% block content %}
+<div class="introduction">
+    <h3>EveryMemory 사용방법</h3>
+    <p class="testsheet"><b>1. <b style="color: #72a73d;"><단어 1></b> 에는 랜덤으로 섞여질 단어 모음, <b style="color: #7f4206;"><단어 2></b>에는 테스트 할 단어모음을 적은 텍스트 파일(.txt)을 넣어주세요. </b>(ex. 영어 단어 테스트에서 한국어를 적는 테스트를 하고 싶다면 단어 1에 영어를, 단어 2에 한국어를 넣어주세요.)</p>
+    <p class="testsheet"><b>2. 텍스트 파일의 단어는 <b style="color: rgb(212, 44, 44); font-size: 15.5px;">enter</b>로 구분해주세요. </b>(텍스트 파일에서 단어 하나를 입력하고 enter를 누른 후 그 다음 단어를 입력해주세요.)</p>
+    <p class="testsheet"><b>3. <b style="color: #72a73d;"><단어 1></b>, <b style="color: #7f4206;"><단어 2></b>에 파일이 모두 들어가야 단어 시험지가 생성됩니다. </b></p>
+    <p class="testsheet"><b>4. 생성된 단어장을 [온라인]에서 사용하시려면 표에 직접 입력하시고 <b style="color: #c73636;">'채점하기'</b> 버튼을 눌러주세요. 점수와 틀린 단어를 확인하실 수 있어요! </b>(입력시 공백에 주의해주세요. 입력 완료 후 표 위에서 커서를 없애 주세요.)</p>
+    <p class="testsheet">&nbsp&nbsp&nbsp&nbsptip. 단어 입력 시 tab 버튼을 활용하면 더 빠른 속도로 이용 가능합니다!</p>
+    <p class="testsheet"><b>5. 생성된 단어장을 다운로드 하고 싶다면 <b style="color: #14692f">'엑셀(.xls)'</b>, <b style="color: #4d4e50">'이미지(.png)'</b> 중 원하는 파일 형식의 다운로드 버튼을 클릭하세요. </b></p>
+    <p class="testsheet"><b>6. 생성된 단어장을 출력하고 싶다면 <b style="color: #2d94d8">'출력'</b> 버튼을 눌러주세요. </b></p>
+    <p><br></p>
+</div>
+
+<hr>
+<div style="text-align: center; margin-top: 1%;">
+<button class="word1" style="width: 30%; text-align: center;" onclick="openTextFile()">단어 1 열기</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button class="word2" style="width: 30%; text-align: center;" onclick="openTextFile1()">단어 2 열기</button>
+</div>
+<div id="output"></div>
+
+<div style="text-align: center; margin-top: 1%;">
+    <div style="margin-top: 2%; margin-bottom: 2%;">
+        <table class="table-bordered" id="array" style="font-size: 18px; margin: auto; font-family: 'Nanum Gothic', sans-serif;"></table>
+    </div>
+    </hr>
+    <div id="button_of_4" style="text-align: center; margin: auto;"></div>
+    </hr>
+    <div style="margin-top: 2%;">
+        <table class="table-bordered" id="score" style="font-size: 18px; margin: auto; font-family: 'Nanum Gothic', sans-serif;"></table>
+        <div style="margin-top: 2%; margin-bottom: 1%;" id="wrongwordtext"></div>
+        <table class="table-bordered" id="wrongword" style="font-size: 18px; margin: auto; font-family: 'Nanum Gothic', sans-serif; margin-bottom: 2%;"></table>
+    </div>
+    </hr>
+</div>
+
+<script type="text/javascript">
+    var num;
+    
+    // 단어 1 열기
+    function openTextFile () {
+        var input = document.createElement("input");
+
+        input.type = "file";
+        input.accept = "text/plain";
+
+        input.onchange = function (event) {
+            processFile(event.target.files[0]);
+        };
+
+        input.click();
+    }
+
+    // 단어 2 열기
+    function openTextFile1 () {
+        var input1 = document.createElement("input");
+
+        input1.type = "file";
+        input1.accept = "text/plain";
+
+        input1.onchange = function (event) {
+            processFile1(event.target.files[0]);
+        };
+
+        input1.click();
+    }
+
+    var txtarray = [];
+    var txtarray1 = [];
+    var rannum = [];
+
+    function processFile(file) {
+        var reader = new FileReader();
+        reader.onload = function () {
+        var contents = event.target.result;
+        var lines = contents.split('\n');
+        for (var i=0; i < lines.length; i++) {
+             txtarray.push(lines[i]);
+        }
+    };
+        reader.readAsText(file);
+    }
+
+    const map = new Map();
+    
+    // 두 개의 배열 맵으로 전환
+    function makemap(keys, values) {
+            for (var j = 0; j < keys.length ; j++) {
+                map.set(keys[j], values[j]);
+            };
+    }
+
+    function processFile1(file) {
+        var reader1 = new FileReader();
+        reader1.onload = function () {
+            var contents1 = event.target.result;
+            var lines1 = contents1.split('\n');
+            for (var i=0; i < lines1.length; i++) {
+                txtarray1.push(lines1[i]);
+            }
+
+            makemap(txtarray, txtarray1); // 단어 1, 단어 2 맵으로 변환
+
+            array.innerHTML = "<tr>" + "<th>단어 1</th>" + "<th>단어 2</th>" + "</tr>";
+
+            for(var h=0; h <= txtarray.length; h++) {
+                var txtnum = Math.floor(Math.random() * (txtarray.length));
+                rannum += txtnum;
+                var temp = txtarray[i];
+                txtarray[i] = txtarray[txtnum];
+                txtarray[txtnum] = temp;
+            }
+
+            for (var j=0; j < txtarray.length; j++) {
+                if(txtarray[j] === undefined)  {
+                    txtarray.splice(j, 1);
+                }
+                if(txtarray[j] != undefined) {
+                    array.innerHTML = array.innerHTML +'<tr>' + '<td>' + txtarray[j]+ '</td>' + '<td>' + '<input name="word" style="width:100%; border: 0; outline: none;">' + '</td>' + '</tr>';
+                }
+            }
+        };
+
+        var tag = "<button class='excel' onclick='ReportToExcelConverter()'>excel 다운</button> &nbsp;";
+        tag += "<button id='save' class='image' onclick='ReportToImgConverter()'>이미지 다운</button> &nbsp;";
+        tag += "<button class='print' onclick='print(document.getElementById('print').innerHTML)'>출력</button> &nbsp;";
+        tag += "<button class='score' onclick='compareInputValue()'>채점하기</button>";
+        button_of_4.innerHTML = tag;
+        reader1.readAsText(file);
+    }
+
+    // 채점
+    function compareInputValue() {
+        var sum=0;
+        var wrongword1 = [];
+        var wrongword2 = [];
+        var txtObj = [];
+        var txtvalue = document.getElementsByName("word");
+        for (var x = 0; x < txtvalue.length; x++) {
+            txtObj.push(txtvalue[x].value);
+        }
+       
+        for (var a = 0; a < txtvalue.length; a++) {
+            console.log(txtObj[a]);
+            if(txtarray[a] != undefined) {
+                if(map.has(txtarray[a])) {
+                    var value1 = map.get(txtarray[a]);
+                    if(txtObj[a] == value1) {
+                        sum += 1;
+                    }
+                    else {
+                        wrongword1.push(txtarray[a]);
+                        wrongword2.push(value1);
+                    }
+                }
+            }
+        }
+
+        if(txtarray.length == sum) {
+            score.innerHTML = '<tr>' + '<td>' + "100점입니다. 축하해요!" + '</td>' + '</tr>';
+        }
+        else {
+            score.innerHTML = '<tr>' + '<td>' + "단어 " + txtarray1.length +"개 중 " + sum + "개 맞으셨습니다." + '</td>' + '</tr>';
+            wrongwordtext.innerHTML = "<p class='wrongwordtext'>틀린 단어, 다시 봐요!</p>";
+            for(var b = 0; b < wrongword1.length; b++) {
+            if(wrongword1[b] != undefined && wrongword2[b] != undefined) {
+                wrongword.innerHTML = wrongword.innerHTML + '<tr>' + '<td>' + wrongword1[b]+ '</td>' + '<td>' + wrongword2[b] + '</td>' + '</tr>';
+            }
+        }
+        }
+        
+    }
+
+    // 엑셀 변환
+    function ReportToExcelConverter() {
+        $("#array").table2excel({ 
+            exclude: ".noExl", 
+            name: "Excel Document Name", 
+            filename: "랜덤단어시험지" +'.xls', 
+            fileext: ".xls", 
+            exclude_img: true, 
+            exclude_links: true, 
+            exclude_inputs: true });
+    }
+
+    // 이미지 변환
+    function ReportToImgConverter() {
+        $("#save").click(function() {
+            html2canvas($("#array"), {
+                onrendered: function(canvas) {
+                    /*canvas.toBlob(function(blob) {
+                        saveAs(blob, '랜덤단어시험지.jpg');
+                    });*/
+                    var a = document.createElement('a');
+                    a.href = canvas.toDataURL("image/png", 1.0).replace ( "image/png", "image /octet-stream");
+                    a.download = '랜덤단어시험지.png';
+                    a.click();
+                }
+            });
+        });
+    }
+    
+    // 출력 기능
+    function print(printArea) {
+        win = window.open();
+        self.focus();
+        win.document.open();
+        win.document.write('<html><head><title></title><style>');
+        win.document.write('body {width: 100%;height: 100%;margin: 0;padding: 0;background-color: #ffffff;font:150pt "Tahoma"}');
+        win.document.write('* {box-sizing: border-box;-moz-box-sizing: border-box;}');
+        win.document.write('table { border-spacing: 0;border-collapse: collapse; table-layout: fixed; word-break: break-all; width: 100%}');
+        win.document.write('table>tbody>tr>td, table>tbody>tr>th, table>tfoot>tr>td, table>tfoot>tr>th, table>thead>tr>td, table>thead>tr>th { padding: 8px;line-height: 1.42857143;vertical-align: top;border-top: 1px solid #ddd;}th { text-align: left;}');
+        win.document.write('table.table-bordered>tbody>tr>td, table.table-bordered>tbody>tr>th,.table.table-bordered>tfoot>tr>td, table.table-bordered>tfoot>tr>th, table.table-bordered>thead>tr>td, table.table-bordered>thead>tr>th { border: 1px solid #ddd;}');
+        win.document.write('</style></head><body>');
+        win.document.write('<table>');
+        win.document.write(printArea);
+        win.document.write('</table>');
+        win.document.write('</body></html>');
+        win.document.close();
+        win.print();
+        win.close();    
+    }
+  </script>
+{% endblock %}
