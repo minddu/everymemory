@@ -149,7 +149,6 @@
         console.log(map);
        
         for (var a = 0; a < txtvalue.length; a++) {
-            if(txtarray[a] != undefined) {
                 if(map.has(txtarray[a])) {
                     var value1 = map.get(txtarray[a]);
                     if(txtObj[a] == value1) {
@@ -160,7 +159,6 @@
                         wrongword2.push(value1);
                     }
                 }
-            }
         }
 
         console.log("점수: " + sum);
