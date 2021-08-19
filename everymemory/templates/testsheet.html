@@ -148,9 +148,11 @@
         console.log("단어 1: " + txtarray);
         console.log(map);
        
-        for (var a = 0; a < txtObj.length; a++) {
+        for (var a = 0; a < txtvalue.length; a++) {
                 if(map.has(txtarray[a])) {
+                    console.log("단어 1: " + txtarray[a]);
                     var value1 = map.get(txtarray[a]);
+                    console.log("단어 2: " + value1);
                     if(txtObj[a] == value1) {
                         sum += 1;
                     }
