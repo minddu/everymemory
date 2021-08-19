@@ -143,6 +143,9 @@
         for (var x = 0; x < txtvalue.length; x++) {
             txtObj.push(txtvalue[x].value);
         }
+
+        console.log(txtObj);
+        console.log("단어 1: " + txtarray);
        
         for (var a = 0; a < txtvalue.length; a++) {
             if(txtarray[a] != undefined) {
@@ -158,6 +161,8 @@
                 }
             }
         }
+
+        console.log("점수: " + sum);
 
         if(txtarray.length == sum) {
             score.innerHTML = '<tr>' + '<td>' + "100점입니다. 축하해요!" + '</td>' + '</tr>';
