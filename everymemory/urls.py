@@ -8,4 +8,4 @@ urlpatterns = [
     path("memory/", memory1, name="memory1"),
     path("memory/testsheet/", testsheet, name="testsheet"),
     path("study/", study, name="study"),
-] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) 

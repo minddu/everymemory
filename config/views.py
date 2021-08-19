@@ -13,13 +13,6 @@
 # from django.http import HttpResponse
 from django.shortcuts import render
 def index(request): 
-    # 어떤 계산이나, 데이터베이스 조회, 수정, 등록
-    # 응답 메시지를 만들어서 반환
-    # html 변수를 대신해서 템플릿 사용
-    # 기본 템플릿 폴더
-    # 1. admin 앱
-    # 2. 각 앱의 폴더에 있는 templates 폴더
-    # 3. 내가 설정한 폴더
     return render(request, 'index.html')
 
 def memory(request):

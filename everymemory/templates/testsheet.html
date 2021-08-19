@@ -39,8 +39,6 @@
 </div>
 
 <script type="text/javascript">
-    var num;
-    
     // 단어 1 열기
     function openTextFile () {
         var input = document.createElement("input");
@@ -73,6 +71,7 @@
     var txtarray1 = [];
     var rannum = [];
 
+    // 단어 1 배열에 저장
     function processFile(file) {
         var reader = new FileReader();
         reader.onload = function () {
@@ -86,8 +85,7 @@
     }
 
     const map = new Map();
-    
-    // 두 개의 배열 맵으로 전환
+    // 두 개의 배열 맵으로 전환하는 함수
     function makemap(keys, values) {
             for (var j = 0; j < keys.length ; j++) {
                 map.set(keys[j], values[j]);
@@ -107,6 +105,7 @@
 
             array.innerHTML = "<tr>" + "<th>단어 1</th>" + "<th>단어 2</th>" + "</tr>";
 
+            // 단어 1 배열 (랜덤으로 섞일 배열) 난수 써서 랜덤으로 동일 배열에 재저장
             for(var h=0; h <= txtarray.length; h++) {
                 var txtnum = Math.floor(Math.random() * (txtarray.length));
                 rannum += txtnum;
@@ -115,6 +114,7 @@
                 txtarray[txtnum] = temp;
             }
 
+            // 행이 단어 1 배열 + input으로 된 테이블 형식으로 출력
             for (var j=0; j < txtarray.length; j++) {
                 if(txtarray[j] === undefined)  {
                     txtarray.splice(j, 1);
@@ -125,6 +125,7 @@
             }
         };
 
+       // 파일 두 개를 다 넣은 후 다운로드와 채점하기 버튼 표시하기
         var tag = "<button class='excel' onclick='ReportToExcelConverter()'>excel 다운</button> &nbsp;";
         tag += "<button id='save' class='image' onclick='ReportToImgConverter()'>이미지 다운</button> &nbsp;";
         tag += "<button class='score' onclick='compareInputValue()'>채점하기</button>";
@@ -144,7 +145,6 @@
         }
        
         for (var a = 0; a < txtvalue.length; a++) {
-            console.log(txtObj[a]);
             if(txtarray[a] != undefined) {
                 if(map.has(txtarray[a])) {
                     var value1 = map.get(txtarray[a]);
@@ -191,9 +191,6 @@
         $("#save").click(function() {
             html2canvas($("#array"), {
                 onrendered: function(canvas) {
-                    /*canvas.toBlob(function(blob) {
-                        saveAs(blob, '랜덤단어시험지.jpg');
-                    });*/
                     var a = document.createElement('a');
                     a.href = canvas.toDataURL("image/png", 1.0).replace ( "image/png", "image /octet-stream");
                     a.download = '랜덤단어시험지.png';
